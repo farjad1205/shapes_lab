@@ -48,11 +48,37 @@ public:
     }
 };
 
+class Square : public Rectangle
+{
+private:
+    double length;
+
+public:
+    Square(double length) : Rectangle(length, length) {}
+};
+
+class IsoTriangle : public RightTriangle
+{
+private:
+    double length;
+
+public:
+    IsoTriangle(double length) : RightTriangle(length, length) {}
+};
+
+void printToScreen(Shape *s)
+{
+    cout << "This shape is " << "[name]" << endl;
+    cout << "With an area of " << s->getArea();
+}
+
 int main()
 {
     Shape *rect = new Rectangle(6, 7);
     Shape *circ = new Circle(4);
     Shape *tri = new RightTriangle(3, 5);
+    Shape *sqr = new Square(6);
+    Shape *iso = new IsoTriangle(4);
 
     assert(rect->getArea());
     assert(rect->getPerimeter());
@@ -60,6 +86,12 @@ int main()
     assert(circ->getPerimeter());
     assert(tri->getArea());
     assert(tri->getPerimeter());
+    assert(sqr->getArea());
+    assert(sqr->getPerimeter());
+    assert(iso->getArea());
+    assert(iso->getPerimeter());
     cout << "all good" << endl;
+
+    printToScreen(sqr);
     return 0;
 }
